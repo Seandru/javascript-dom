@@ -1,13 +1,16 @@
 import '../assets/css/style.css';
 
 const app = document.getElementById('app');
+app.innerHTML = `<h1>JavaScript DOM </h1>`;
 
-const div = document.createElement('div');
-const text = document.createTextNode('DOM!');
-const comment = document.createComment('No comment.');
+const h1 = document.createElement('h1');
+h1.innerText = 'some text here';
+h1.style.color = 'Tomato';
+h1.innerText += ' another text here';
 
-div.append(comment);
-div.append(text);
-app.append(div);
+app.append(h1);
 
-console.log(app, div);
+console.log(app.innerHTML);
+console.log(app.innerText);
+console.log(app.textContent);
+
