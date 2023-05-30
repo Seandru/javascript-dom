@@ -1,16 +1,34 @@
 import '../assets/css/style.css';
 
 const app = document.getElementById('app');
-app.innerHTML = `<h1>JavaScript DOM </h1>`;
 
-const h1 = document.createElement('h1');
-h1.innerText = 'some text here';
-h1.style.color = 'Tomato';
-h1.innerText += ' another text here';
+function createInputDOM({label, type = 'text'}){
+  const labelEl = document.createElement('label');
+  const inputEl = document.createElement('input');
 
-app.append(h1);
+  inputEl.type = type;
+  labelEl.innerText = label;
+  labelEl.append(inputEl);
 
-console.log(app.innerHTML);
-console.log(app.innerText);
-console.log(app.textContent);
+  return labelEl;
+}
 
+const inputFromDOM = createInputDOM({label: 'Name'});
+console.log(inputFromDOM.querySelector('input'));
+app.append(inputFromDOM);
+
+// Using string templates
+function createInputTemplate({ label, type = 'text' }) {
+  return `
+  <label>
+    ${label}
+    <input type="${type}">
+  </label>`;
+}
+
+const inputFromTemplate = createInputTemplate({
+  label: 'Email',
+  type: 'email',
+});
+
+app.innerHTML += inputFromTemplate;
