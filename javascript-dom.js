@@ -1,34 +1,16 @@
 import '../assets/css/style.css';
 
 const app = document.getElementById('app');
+app.innerHTML = `<h1>JavaScript DOM</h1>`;
 
-function createInputDOM({label, type = 'text'}){
-  const labelEl = document.createElement('label');
-  const inputEl = document.createElement('input');
+const data = ['Earth', 'Fire', 'Water', 'Air'];
 
-  inputEl.type = type;
-  labelEl.innerText = label;
-  labelEl.append(inputEl);
+const fragment = document.createDocumentFragment();
 
-  return labelEl;
-}
-
-const inputFromDOM = createInputDOM({label: 'Name'});
-console.log(inputFromDOM.querySelector('input'));
-app.append(inputFromDOM);
-
-// Using string templates
-function createInputTemplate({ label, type = 'text' }) {
-  return `
-  <label>
-    ${label}
-    <input type="${type}">
-  </label>`;
-}
-
-const inputFromTemplate = createInputTemplate({
-  label: 'Email',
-  type: 'email',
+data.forEach(name => {
+  const li = document.createElement('li');
+  li.innerText = name;
+  fragment.append(li);
 });
 
-app.innerHTML += inputFromTemplate;
+app.append(fragment);
