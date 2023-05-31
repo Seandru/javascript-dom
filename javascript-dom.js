@@ -16,24 +16,22 @@ data.forEach(item => {
   fragment.append(li);
 });
 
-// getElementById: HTMLElement
-const ulFromId = document.getElementById('list');
-console.log(ulFromId);
-ulFromId.append(fragment);
+// ul { background: red; }
+// #list { background: red; }
+const ulFromQuerySelector = document.querySelector('#list');
+console.log(ulFromQuerySelector);
 
-// getElementsByClassName: HTMLCollection
-const listItemsFromClassName = ulFromId.getElementsByClassName('list-item');
-console.log(listItemsFromClassName);
+ulFromQuerySelector.append(fragment);
 
-// getElementsByTagName
-const listItemsFromTagName = ulFromId.getElementsByTagName('li');
-console.log(listItemsFromTagName);
+const listItemsFromQSA = ulFromQuerySelector.querySelectorAll('.list-item');
+console.log(listItemsFromQSA);
 
-//Live collection
 const newListItem = document.createElement('li');
 newListItem.className = 'list-item';
 newListItem.innerText = 'Air';
-ulFromId.append(newListItem);
+ulFromQuerySelector.append(newListItem);
 
-console.log(listItemsFromClassName);
-console.log(listItemsFromTagName);
+console.log(
+  listItemsFromQSA,
+  ulFromQuerySelector.querySelectorAll('.list-item')
+);
