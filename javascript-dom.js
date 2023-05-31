@@ -11,19 +11,28 @@ app.innerHTML = `
   </ul>
 `;
 
-const item = document.querySelector('.item');
+import '../assets/css/style.css';
 
-console.log(item.parentNode);
-console.log(item.parentElement.parentElement);
-console.log(item.closest('#app'));
-console.log(item.closest('body'));
+const app = document.getElementById('app');
+app.innerHTML = `
+  <h1>JavaScript DOM</h1>
+  <button type="button">
+    Close Me
+  </button>
+  <input type="text">
+`;
 
-const listItem = document.querySelector('#list li');
+const input = document.querySelector('input');
+//input.value = 2;
+input.setAttribute('value', 2);
+console.log(input.value);
+console.dir(input);
 
-//DOM nodes
-console.log(listItem.nextSibling);
-console.log(listItem.previousSibling);
-
-//Element nodes
-console.log(listItem.nextElementSibling);
-console.log(listItem.previousElementSibling);
+const button = document.querySelector('button');
+//set
+button.setAttribute('aria-label', 'Close this Modal');
+//get
+const value = button.getAttribute('aria-label');
+console.log(value);
+//.attributes
+console.log(button.attributes['aria-label']);
