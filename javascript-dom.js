@@ -3,35 +3,25 @@ import '../assets/css/style.css';
 const app = document.getElementById('app');
 app.innerHTML = `
   <h1>JavaScript DOM</h1>
-  <ul id="list"></ul>
+  <ul id="list">
+    <li>Earth</li>
+    <li>Fire</li>
+    <li>Water</li>
+    <li>Air</li>
+  </ul>
 `;
 
-const data = ['Earth', 'Fire', 'Water'];
-const fragment = document.createDocumentFragment();
+const listItems = document.querySelectorAll('#list li');
+console.log(listItems);
 
-data.forEach(item => {
-  const li = document.createElement('li');
-  li.className = 'list-item';
-  li.innerText = item;
-  fragment.append(li);
-});
+for (let i = 0; i < listItems.length; i++) {
+  console.log(listItems[i]);
+}
 
-// ul { background: red; }
-// #list { background: red; }
-const ulFromQuerySelector = document.querySelector('#list');
-console.log(ulFromQuerySelector);
+for (const item of listItems) {
+  console.log(item);
+}
 
-ulFromQuerySelector.append(fragment);
+[...listItems].forEach(item => console.log(item));
 
-const listItemsFromQSA = ulFromQuerySelector.querySelectorAll('.list-item');
-console.log(listItemsFromQSA);
-
-const newListItem = document.createElement('li');
-newListItem.className = 'list-item';
-newListItem.innerText = 'Air';
-ulFromQuerySelector.append(newListItem);
-
-console.log(
-  listItemsFromQSA,
-  ulFromQuerySelector.querySelectorAll('.list-item')
-);
+Array.from(listItems).forEach(item => console.log(item));
