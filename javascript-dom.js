@@ -3,18 +3,23 @@ import './assets/css/style.css';
 const app = document.getElementById('app');
 app.innerHTML = `
   <h1>JavaScript DOM</h1>
+  <div> 
+    Replace me!
+  </div>
 `;
 
-const div = document.createElement('div');
-const span = document.createElement('span');
-const p = document.createElement('p');
-const i = document.createElement('i');
-const b = document.createElement('b');
 
-div.append(span);
-div.prepend(p);
-// p.before(i);
-p.after(i);
-i.parentNode.insertBefore(b, i.nextSibling);
+const div = app.querySelector('div');
 
-console.log(div);
+const newDiv = document.createElement('div');
+newDiv.innerText = 'I have been replaced!';
+
+// new way
+div.replaceWith(newDiv);
+// old way
+const anotherDiv = document.createElement('div');
+anotherDiv.innerText = 'I replace all';
+
+setTimeout(() => {
+  newDiv.parentNode.replaceChild(anotherDiv, newDiv);
+}, 2000);
