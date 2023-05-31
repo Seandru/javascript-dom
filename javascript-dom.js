@@ -3,23 +3,21 @@ import './assets/css/style.css';
 const app = document.getElementById('app');
 app.innerHTML = `
   <h1>JavaScript DOM</h1>
-  <div> 
-    Replace me!
-  </div>
 `;
 
+const div = document.createElement('div');
+const span = document.createElement('span');
 
-const div = app.querySelector('div');
+span.innerText = 'Can you clone me?';
 
-const newDiv = document.createElement('div');
-newDiv.innerText = 'I have been replaced!';
+div.append(span);
+app.append(div);
 
-// new way
-div.replaceWith(newDiv);
-// old way
-const anotherDiv = document.createElement('div');
-anotherDiv.innerText = 'I replace all';
+//cloneNode(false) only clones the top element
+const clone = div.cloneNode();
+console.log(clone);
+//cloneNode(true) clones all elements and subtrees
+const newClone = div.cloneNode(true);
 
-setTimeout(() => {
-  newDiv.parentNode.replaceChild(anotherDiv, newDiv);
-}, 2000);
+console.log(newClone);
+app.append(newClone);
