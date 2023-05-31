@@ -11,19 +11,19 @@ app.innerHTML = `
   </ul>
 `;
 
-const list = document.querySelector('#list');
-const selectedIndex = 2;
+const item = document.querySelector('.item');
 
-//querySelectorAll :NodeList
-const queryChildren = list.querySelectorAll('li');
-console.log(queryChildren[selectedIndex], queryChildren.length);
+console.log(item.parentNode);
+console.log(item.parentElement.parentElement);
+console.log(item.closest('#app'));
+console.log(item.closest('body'));
 
-//.children :HTMLCollection
-console.log(list.children[selectedIndex], list.children.length);
+const listItem = document.querySelector('#list li');
 
-//.childNodes :NodeList
-console.log(list.childNodes[selectedIndex], list.childNodes.length);
+//DOM nodes
+console.log(listItem.nextSibling);
+console.log(listItem.previousSibling);
 
-//first/last
-console.log(list.firstChild, list.firstElementChild);
-console.log(list.lastChild, list.lastElementChild);
+//Element nodes
+console.log(listItem.nextElementSibling);
+console.log(listItem.previousElementSibling);
