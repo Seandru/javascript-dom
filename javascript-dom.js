@@ -3,24 +3,23 @@ import '../assets/css/style.css';
 const app = document.getElementById('app');
 app.innerHTML = `
   <h1>JavaScript DOM</h1>
-  <div style='height: 1000px;"></div>
+  <form name="order">
+    <label>
+      Your name:
+      <input type="text" name="fullname">
+    </label>
+  </form>
 `;
 
-document.addEventListener('keydown', event => {
-  //console.log(event.key, event.code);
-  switch(event.key){
-    case 'ArrowUp': {
-      console.log('Up!');
-      event.preventDefault();
-      break;
-    }
-    case 'ArrowDown': {
-      console.log('Down!');
-      event.preventDefault();
-      break;
-    }
-  }
-});
+const form = document.forms.order;
 
-document.addEventListener('keydown', event => console.log(event.key));
-window.addEventListener('keyup', event => console.log(event.key));
+const fullname = form.elements.fullname;
+
+console.log(fullname);
+
+function handleInput(event){
+  console.log(event.target.value); //access the value
+  console.log(event.target.form); // access the form
+}
+ 
+fullname.addEventListener('input', handleInput);
