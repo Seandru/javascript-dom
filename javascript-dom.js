@@ -3,68 +3,37 @@ import '../assets/css/style.css';
 const app = document.getElementById('app');
 app.innerHTML = `
   <h1>JavaScript DOM</h1>
-  <form name="order">
-    <label>
-      Your name:
-      <input type="text" name="fullname">
-    <label>
-      Which pizza would you like?
-      <select name="pizza">
-        <option value = "pepperoni">Pepperoni</option>
-        <option value = "meaty">Meaty</option>
-        <option value = "cheesy">Cheesy</option>
-      </select>  
-    </label>
-    </label>
-    <div>
-      What size?
-      <label>
-        Small
-        <input type="radio" name="size" value="small" checked>
-      </label>
-      <label>
-        Medium
-        <input type="radio" name="size" value="medium">
-      </label>
-      <label>
-        Large
-        <input type="radio" name="size" value="large">
-      </label>
-    </div>
-    <label>
-        Quantity
-        <input type="number" name="quantity" value="1">
-      </label>
-    <button>
-      Submit
-    </button>
+  <form name="example">
+    <input type="text" name="myInput" value="Hello">
   </form>
 `;
 
-const form = document.forms.order;
+const form = document.forms.example;
+const input = form.myInput;
 
-function handleSubmit(event){
-  event.preventDefault();
-  //query string - fullname=FirstName+SecondName&pizza=pepperoni&size=large&quantity=2
-  //content-type = application/x-www-form-urlencoded
-  const formData = new FormData(event.target);
-  const asString = new URLSearchParams(formData).toString();
-  console.log(asString);
-  //json
-  const asJSON = JSON.stringify(Object.fromEntries(formData));
-  console.log(asJSON);
-  
-  fetch('/fakeapi', {
-    method: 'post',
-    headers: {
-      //'Content-Type': 'application/x-www-form-urlencoded'
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-   // body: asString,
-    body: asJSON,
-  });
-}
+//1. Useful properties
+
+console.dir(input);
+//set
+input.value = 'Goodbye';
+//input.disabled = true;
+//input.readOnly = true;
+//get
+console.log(input.value);
+
+//2. Events
+// other events: cut, copy, paste
+input.addEventListener('focus', () => console.log('Focus'));
+input.addEventListener('blur', () => console.log('Blur'));
+input.addEventListener('input', () => console.log('Input'));
+input.addEventListener('change', () => console.log('Change'));
+
+//3. Methods
+//focus an input
+input.focus();
+setTimeout(() => input.blur(), 2500);
 
 
 
-form.addEventListener('submit', handleSubmit);
+
+
