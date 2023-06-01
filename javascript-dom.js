@@ -4,28 +4,41 @@ const app = document.getElementById('app');
 app.innerHTML = `
   <h1>JavaScript DOM</h1>
   <form name="example">
-    <label>
-      Accept Marketing
-      <input type="checkbox" name="marketing">
-    </label>
+    <select name="drink">
+      <option value="">Select Your Drink...</option>
+      <option value="lemonade" selected>Lemonade</option>
+      <option value="cola">Cola</option>
+      <option value="water">Water</option>
+    </select>
   </form>
 `;
 
 const form = document.forms.example;
-const checkbox = form.elements.marketing;
+const select = form.elements.drink;
 
-//1. Useful properties
-console.dir(checkbox);
-//set
-checkbox.checked = true;
-//get
-console.log(checkbox.checked);
 
-//2. Events
-checkbox.addEventListener('change', () => {
-  console.log(checkbox.checked);
-  console.log(checkbox.value);
-});
+//1. Selected value
+select.value = 'water';
+console.log(select.value);
 
-//3. Methods
-checkbox.select();
+//2. Selected index
+const id = 2;
+select.selectedIndex = id;
+console.dir(select.selectedIndex);
+
+//3. Selected DOM Element
+console.log(select.options[select.selectedIndex]);
+
+//4. Events
+select.addEventListener('change', () => {
+  console.log(select.value);
+  console.log(select.selectedIndex);
+  console.log(select.options[select.selectedIndex]);
+})
+
+//5. Add new <option>
+const option = document.createElement('option');
+option.value = 'milk';
+option.text = 'Milk';
+
+select.add(option, 1);
