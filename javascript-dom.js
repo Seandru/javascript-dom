@@ -4,34 +4,46 @@ const app = document.getElementById('app');
 app.innerHTML = `
   <h1>JavaScript DOM</h1>
   <form name="example">
-    <input type="text" name="myInput" value="Hello">
+  <div class="container">
+    <label>
+    Blue
+      <input type="radio" name="color" value="blue" checked>
+    </label>
+    <label>
+    Red
+      <input type="radio" name="color" value="red">
+    </label>
+    <label>
+    Green
+      <input type="radio" name="color" value="green">
+    </label>
+  </div>
   </form>
 `;
 
 const form = document.forms.example;
-const input = form.myInput;
+const radios = [...form.elements.color];
 
 //1. Useful properties
-
-console.dir(input);
-//set
-input.value = 'Goodbye';
-//input.disabled = true;
-//input.readOnly = true;
-//get
-console.log(input.value);
+radios.forEach(radio => {
+  console.log(radio.value);
+  console.log(radio.checked);
+})
 
 //2. Events
-// other events: cut, copy, paste
-input.addEventListener('focus', () => console.log('Focus'));
-input.addEventListener('blur', () => console.log('Blur'));
-input.addEventListener('input', () => console.log('Input'));
-input.addEventListener('change', () => console.log('Change'));
+const container = form.querySelector('.container');
 
-//3. Methods
-//focus an input
-input.focus();
-setTimeout(() => input.blur(), 2500);
+container.addEventListener('change', () => {
+  // console.log('Change...');
+  // const checked = radios.find(radio => radio.checked).value;
+  // console.log(checked);
+  console.log(form.elements.color.value);
+});
+
+
+
+
+
 
 
 
