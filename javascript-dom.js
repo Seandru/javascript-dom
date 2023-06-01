@@ -4,18 +4,30 @@ const app = document.getElementById('app');
 app.innerHTML = `
   <h1>JavaScript DOM</h1>
   <button type="button">
-    Click Me!
+    Click Me
   </button>
 `;
 
-//<button style="padding: 25px; margin: 10px 0;">
 const button = document.querySelector('button');
 
-//CSS
-button.style.cssText = 'padding: 25px; margin: 10px 0; font-size: 20px;';
+//doesn't allow multiple events
+//button.onclick = function(){
+  //console.log('1');
+//};
 
-//direct property access
-button.style.fontSize = '22px';
-button.style.marginTop = '15px';
+function handleClick(event){
+  console.log(this, event.target);
+}
 
-console.log(button.style.fontSize);
+button.addEventListener('click', handleClick);
+
+button.addEventListener('click', event => {
+  console.log(this, event.target, 'Double clicked!')
+});
+
+function handleClickOnce(event) {
+  console.log(event.target);
+  button.removeEventListener('click', handleClickOnce);
+}
+
+button.addEventListener('click', handleClickOnce);
