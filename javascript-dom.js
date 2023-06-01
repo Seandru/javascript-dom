@@ -7,19 +7,36 @@ app.innerHTML = `
     <label>
       Your name:
       <input type="text" name="fullname">
+    <label>
+      Which pizza would you like?
+      <select name="pizza">
+        <option value = "pepperoni">Pepperoni</option>
+        <option value = "meaty">Meaty</option>
+        <option value = "cheesy">Cheesy</option>
+      </select>  
     </label>
+    </label>
+    <button>
+      Submit
+    </button>
   </form>
 `;
 
 const form = document.forms.order;
 
-const fullname = form.elements.fullname;
-
-console.log(fullname);
-
-function handleInput(event){
-  console.log(event.target.value); //access the value
-  console.log(event.target.form); // access the form
+function handleSubmit(event){
+  event.preventDefault();
+  console.log(new FormData(event.target));
 }
- 
-fullname.addEventListener('input', handleInput);
+
+function handleFormData(event){
+  console.log([...event.formData]);
+  console.log([...event.formData.values()]);
+  const entries = event.formData.entries();
+  for(const entry of entries){
+    console.log(entry);
+  }
+}
+
+form.addEventListener('submit', handleSubmit);
+form.addEventListener('formdata', handleFormData);
