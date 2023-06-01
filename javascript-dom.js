@@ -3,33 +3,38 @@ import '../assets/css/style.css';
 const app = document.getElementById('app');
 app.innerHTML = `
   <h1>JavaScript DOM</h1>
-  <form>
-    <label>
-      Sign-up Email
-      <input type="email">
-    </label>
-    <label>
-      I agree to the terms
-      <input type="checkbox">
-    </label>
-  </form>
+  <button type="button">
+    Add Item
+  </button>
+  <ul id="list">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+  </ul>
 `;
 
-const form = document.querySelector('form');
-const email = form.querySelector('input[type="email"]');
-const checkbox = form.querySelector('input[type="checkbox"]');
+const button = document.querySelector('button');
+const list = document.querySelector('#list');
+//const items = [...list.querySelectorAll('li')];
 
-function handleSubmit(event){
-  if(!checkbox.checked){
-  event.preventDefault();
-  console.log('I am not submitting...');
-  return;
+function handleClick(event){
+  if(event.target.nodeName.toLowerCase() === 'li'){
+    console.log(event.target.innerText);
   }
-  console.log('Submitted', email.value);
 }
 
-form.addEventListener('submit', handleSubmit);
-// no checking
-//checkbox.addEventListener('click', event => {
-//  event.preventDefault();
-//})
+list.addEventListener('click', handleClick);
+
+//items.forEach(item => {
+//  item.addEventListener('click', handleClick);
+//});
+
+
+button.addEventListener('click', () => {
+  const items = list.querySelectorAll('li');
+  const li = document.createElement('li');
+  li.innerText = `Item ${items.length + 1}`;
+  li.addEventListener('click', handleClick);
+  list.append(li);
+})
