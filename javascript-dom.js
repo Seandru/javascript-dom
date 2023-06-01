@@ -48,25 +48,23 @@ function handleSubmit(event){
   //query string - fullname=FirstName+SecondName&pizza=pepperoni&size=large&quantity=2
   //content-type = application/x-www-form-urlencoded
   const formData = new FormData(event.target);
-  // const data = [...formData.entries()];
-  // const asString = data.map(x => `${encodeURIComponent(x[0])}=${encodeURIComponent(x[1])}`).join('&');
-  // console.log(asString);
   const asString = new URLSearchParams(formData).toString();
   console.log(asString);
-
   //json
   const asJSON = JSON.stringify(Object.fromEntries(formData));
   console.log(asJSON);
+  
+  fetch('/fakeapi', {
+    method: 'post',
+    headers: {
+      //'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+   // body: asString,
+    body: asJSON,
+  });
 }
 
-function handleFormData(event){
-  console.log([...event.formData]);
-  console.log([...event.formData.values()]);
-  const entries = event.formData.entries();
-  for(const entry of entries){
-    console.log(entry);
-  }
-}
+
 
 form.addEventListener('submit', handleSubmit);
-form.addEventListener('formdata', handleFormData);
