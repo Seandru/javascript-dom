@@ -3,31 +3,27 @@ import '../assets/css/style.css';
 const app = document.getElementById('app');
 app.innerHTML = `
   <h1>JavaScript DOM</h1>
-  <button type="button">
-    Click Me
-  </button>
+  <div class="one">
+    <div class="two">
+      <button type="button" class="three">
+        Click Me
+      </button>
+    </div>
+  </div>
 `;
 
-const button = document.querySelector('button');
+const one = document.querySelector('.one');
+const two = document.querySelector('.two');
+const three = document.querySelector('.three');
 
-//doesn't allow multiple events
-//button.onclick = function(){
-  //console.log('1');
-//};
 
-function handleClick(event){
-  console.log(this, event.target);
-}
-
-button.addEventListener('click', handleClick);
-
-button.addEventListener('click', event => {
-  console.log(this, event.target, 'Double clicked!')
-});
-
-function handleClickOnce(event) {
+function handleClick(event) {
+  event.stopPropagation();
+  // event.stopImmediatePropagation();
   console.log(event.target);
-  button.removeEventListener('click', handleClickOnce);
 }
 
-button.addEventListener('click', handleClickOnce);
+one.addEventListener('click', handleClick);
+two.addEventListener('click', handleClick);
+three.addEventListener('click', handleClick);
+three.addEventListener('click', event => console.log(event), { capture: true });
